@@ -1,3 +1,5 @@
+import time
+
 from fastapi import FastAPI, Depends , Request , Form
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -35,9 +37,12 @@ async def read_main(request : Request, response_class=HTMLResponse):
 
 @app.post("/predict")
 async def predict(request : Request,text: str = Form(...)):
+    time.sleep(5)
     msg = predict_a(text)
     return templates.TemplateResponse("main.html", {"request": request, "msg": str(msg[0])})
 
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# uvicorn FastAPIPredictorApp:app --reload
