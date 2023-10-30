@@ -20,17 +20,31 @@
             <label for="text" class="form-label">Please Enter the text for classification:</label>
             <textarea name="text" class="form-control" id="text" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" onclick="runspinner()">Submit</button>
         </form>
     </div>
     <div class="mt-4 p-5 bg-primary text-white rounded">
           <h2>Text Classification Result</h2>
-                {% if msg %}
-                    <div>
-                        <b>Classification Result : </b>{{ msg }}
+
+                <div>
+                    <b>Classification Result : </b>
+                    <div id="loader" style="visibility:hidden" class="spinner-border text-dark" role="status">
                     </div>
-                 {% endif %}
-        </div>
+
+                    {% if msg %}
+                      {{ msg }}
+                    {% endif %}
+                </div>
+    </div>
+
+
 </body>
+<script>
+    function runspinner()
+    {
+        document.getElementById("loader").style.visibility = "visible";
+    }
+
+</script>
 
 </html>
